@@ -1,7 +1,7 @@
 package org.example;
 enum BookStatus
 {
-    BORROWED,RETURNED,AVAILABLE,NOTAVAILABLE;
+    BORROWED,AVAILABLE;
 }
 public class Book {
     private String title;
@@ -23,7 +23,7 @@ public class Book {
     }
     public void markAsReturned()
     {
-        status=BookStatus.RETURNED;
+        status=BookStatus.AVAILABLE;
     }
     public String getTitle()
     {

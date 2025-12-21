@@ -2,12 +2,18 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         Liberary liberary = new Liberary();
-        Book  book1 = new Book("html", "Mohammed");
-        Member member = new Member("mk2047", "Ahmed");
+        Member member = new Member();
+        Book  book1 = new Book("java", "Mohammed");
         liberary.addBook(book1);
-        member.canBorrowBook(liberary,"html");
-        member.returnBook(liberary,book1,"html");
-        liberary.findAllBooks();
+        member.canBorrowBook(liberary,"java");
+        member.canBorrowBook(liberary,"java");
+        member.returnBook(liberary,"java");
+        member.returnBook(liberary,"java");
+        liberary.findAllBooksV2();
+        member.canBorrowBook(liberary,"java");
+        liberary.findAllBooksV2();
+
+
     }
     }
 

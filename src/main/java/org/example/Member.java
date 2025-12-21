@@ -4,25 +4,26 @@ public class Member {
 
     private String id;
     private String name;
-    Member(String id,String name)
-    {
-        this.id=id;
-        this.name=name;
-    }
     public void canBorrowBook(Liberary liberary, String title)
     {
         try{
-             liberary.borrowBook(title);
-             System.out.println("you can borrow this book ");
+             liberary.borrowBookV2(title);
         }
-        catch (LiberayNotFoundBook e)
+        catch (InvalidBook e)
         {
             System.out.println(e.getMessage());
         }
     }
-    public void returnBook(Liberary liberary,Book book,String titel)
+    public void returnBook(Liberary liberary,String titel)
     {
-        liberary.returnedBook(book,titel);
+        try
+        {
+        liberary.returnedBook(titel);
+        }
+        catch (InvalidBook e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getId()
