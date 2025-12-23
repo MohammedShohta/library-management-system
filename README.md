@@ -12,6 +12,10 @@ A small **Java** project for managing a library, demonstrating **Object-Oriented
   - "removeBookV2" with safer removal logic.
   - "borrowBook" using **lambda expressions**.
   - "borrowBook" now checks **AVAILABLE** status before borrowing.
+  - - Added **custom sorting for books** in Library:
+  - Books are sorted by **id**.
+  - If two books have the same `id`, they are sorted alphabetically by **title**.
+- Sorting logic is now handled by **Library**, keeping **Book** as a data-only class.
 - Legacy methods are marked as **@Deprecated**.
 
 ## 🚀 Future Plans
