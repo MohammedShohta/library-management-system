@@ -1,13 +1,20 @@
 package org.example;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Comparator;
+
 enum BookStatus
 {
     BORROWED,AVAILABLE;
 }
 public class Book {
+    int id;
     private String title;
     private String author;
     private BookStatus status;
-    Book(String title,String author)  {
+    Book(int id,String title,String author)  {
+        this.id=id;
         this.title = title;
         this.author = author;
         this.status=BookStatus.AVAILABLE;
@@ -38,5 +45,9 @@ public class Book {
         return status;
     }
 
+    public int getId()
+    {
+        return this.id;
+    }
 
 }

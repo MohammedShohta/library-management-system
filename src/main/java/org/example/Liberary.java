@@ -1,13 +1,14 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
-public class Liberary {
+public class Liberary   {
     //aggregation relationship
     private ArrayList<Book> list = new ArrayList<>();
     private Member member;
-
     //completed done
     public void addBook(Book books) {
         list.add(books);
@@ -133,10 +134,34 @@ public class Liberary {
             System.out.println(
                     "book title: " + book.getTitle() +
                             " | Author name: " + book.getAuthor() +
-                            " | book status: " + book.getStatus()
+                            " | book status: " + book.getStatus()+
+                            " | book id :"+book.getId()
             );
         }
     }
+
+    //custom comparator because i need liberary sorte the book
+    public void sortById()
+    {
+        Collections.sort(list, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o1.id-o2.id;
+            }
+        });
+    }
+
+    /*
+    **use sortById method because i built it by ananymouse class
+     */
+    @Deprecated
+    public void sortbyAnotherClass()
+    {
+        Collections.sort(list,new SortBook());
+    }
+
+
+
 }
 
 
