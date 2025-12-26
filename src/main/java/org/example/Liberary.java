@@ -1,13 +1,14 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+
 
 public class Liberary   {
     //aggregation relationship
-    private ArrayList<Book> list = new ArrayList<>();
+    private List<Book> list = new ArrayList<>();
     private Member member;
     //completed done
     public void addBook(Book books) {
@@ -126,6 +127,7 @@ public class Liberary   {
     }
 
     public void findAllBooksV2() {
+
         Iterator<Book> it = list.iterator();
         while (it.hasNext()) {
             //if you call next() more time you git exception call NosuchElementException
@@ -158,6 +160,22 @@ public class Liberary   {
     public void sortbyAnotherClass()
     {
         Collections.sort(list,new SortBook());
+    }
+
+    public void availableBook()
+    {
+              list.stream()
+                      .filter(book->book.getStatus()==BookStatus.AVAILABLE)
+                      //book --->String
+                      //i need return book after map
+//                      .map(book->book.getTitle().toUpperCase())
+                      .map(book->{
+                          //the title become uppercase
+                          book.setTitle(book.getTitle().toUpperCase());
+                          return book;
+                      })
+                      .sorted(Comparator.comparing(Book::getTitle))
+                      .forEach(book-> System.out.println(book.getTitle()));
     }
 
 

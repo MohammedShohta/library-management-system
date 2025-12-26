@@ -50,4 +50,9 @@ public class Book {
         return this.id;
     }
 
+    public void setTitle(String title)
+    {
+        this.title=title;
+    }
+
 }
