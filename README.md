@@ -7,6 +7,7 @@ A small **Java** project for managing a library, demonstrating **Object-Oriented
 - Manage books and library members.
 - Handle errors using **Exception Handling** for a stable program.
 - Updated book management with **ArrayList** instead of array.
+- Used Stream Api to Handling data.
 - Improved methods:
   - "findAllBooksV2" using **Iterator**.
   - "removeBookV2" with safer removal logic.
@@ -17,6 +18,7 @@ A small **Java** project for managing a library, demonstrating **Object-Oriented
   - If two books have the same `id`, they are sorted alphabetically by **title**.
 - Sorting logic is now handled by **Library**, keeping **Book** as a data-only class.
 - Legacy methods are marked as **@Deprecated**.
+- "available Book" Filter and sort available books using the Stream API.
 
 ## 🚀 Future Plans
 
