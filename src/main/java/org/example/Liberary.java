@@ -1,15 +1,11 @@
 package org.example;
-
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-
 
 public class Liberary   {
     //aggregation relationship
-    private List<Book> list = new ArrayList<>();
-    private Member member;
+    private List<Book> list=new ArrayList<>();
+     private Admin admin;
     //completed done
     public void addBook(Book books) {
         list.add(books);
@@ -36,6 +32,11 @@ public class Liberary   {
         }
         throw new InvalidBook("Book Not Available ");
     }
+    @Deprecated
+    /*
+    * use stream method
+    *
+    * */
     //by using lambda ->
     public void borrowBookV2(String titel)throws InvalidBook
     {
@@ -58,6 +59,23 @@ public class Liberary   {
        }
        throw new InvalidBook("this book is not available");
     }
+    public void borrowBookV3(String title)throws InvalidBook
+    {
+        Book book =list.stream()
+                .filter(b->b.getTitle().equals(title))
+                .findFirst()
+                .orElseThrow(()->new InvalidBook("Book Not Available"));
+
+        if(book.getStatus()==BookStatus.BORROWED)
+        {
+            throw new InvalidBook("book was borrowed");
+        }
+
+        book.markBorrowed();
+        System.out.println("you can borrow book"+" "+book.getTitle());
+
+
+    }
     public void returnedBook(String title) throws InvalidBook {
         for (Book b : list) {
             if (b.getTitle().equals(title)) {
@@ -72,6 +90,22 @@ public class Liberary   {
             }
         }
         throw new InvalidBook("This book does not belong to this library");
+    }
+    public void returnedBookV2(String title) throws InvalidBook {
+        Book book=list.stream()
+                .filter(b->b.getTitle().equals(title))
+                .findFirst()
+                .orElseThrow(()->new InvalidBook("this book is not found in liberary"));
+        if (book.getStatus() == BookStatus.AVAILABLE) {
+            throw new InvalidBook("This book is already available and not borrowed");
+        }
+
+            book.markAsReturned();
+        System.out.println("Book returned suc");
+
+
+
+
     }
 
     @Deprecated
@@ -94,7 +128,11 @@ public class Liberary   {
 
 }*/
     }
-
+    /*
+    * use stream method
+    *
+    * */
+    @Deprecated
     public void removeBookV2(String titel) {
         Iterator<Book> it = list.iterator();
         try {
@@ -125,7 +163,11 @@ public class Liberary   {
             );
         }
     }
-
+    /*
+    * use stream method
+    *
+    * */
+@Deprecated
     public void findAllBooksV2() {
 
         Iterator<Book> it = list.iterator();
@@ -140,6 +182,22 @@ public class Liberary   {
                             " | book id :"+book.getId()
             );
         }
+    }
+
+    //by using stream
+    //will view all book
+    public void findAllBooksV3() {
+    list.stream().
+            filter(book->book.getStatus()==BookStatus.AVAILABLE
+            ||book.getStatus()==BookStatus.BORROWED)
+            .forEach(book-> System.out.println(book.getTitle()+" "+book.getAuthor()+" "+book.getStatus()));
+    }
+    //all available books
+    public void findAllBooksForMemberUser()
+    {
+                list.stream().
+                filter(book->book.getStatus()==BookStatus.AVAILABLE)
+                .forEach(book-> System.out.println(book.getTitle()+" "+book.getAuthor()+" "+book.getStatus()));
     }
 
     //custom comparator because i need liberary sorte the book
@@ -164,6 +222,7 @@ public class Liberary   {
 
     public void availableBook()
     {
+        System.out.println("available book");
               list.stream()
                       .filter(book->book.getStatus()==BookStatus.AVAILABLE)
                       //book --->String
@@ -177,7 +236,6 @@ public class Liberary   {
                       .sorted(Comparator.comparing(Book::getTitle))
                       .forEach(book-> System.out.println(book.getTitle()));
     }
-
 
 
 }

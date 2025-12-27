@@ -1,13 +1,19 @@
 package org.example;
 
-public class Member {
 
-    private String id;
-    private String name;
+//borrow,return only
+public class Member extends User{
+
+
+    public Member()
+    {
+        super("Mohammed","moh@gmail",32);
+    }
+
     public void canBorrowBook(Liberary liberary, String title)
     {
         try{
-             liberary.borrowBookV2(title);
+             liberary.borrowBookV3(title);
         }
         catch (InvalidBook e)
         {
@@ -18,7 +24,7 @@ public class Member {
     {
         try
         {
-        liberary.returnedBook(titel);
+        liberary.returnedBookV2(titel);
         }
         catch (InvalidBook e)
         {
@@ -26,12 +32,11 @@ public class Member {
         }
     }
 
-    public String getId()
+    @Override
+    public void viewBook(Liberary liberary)
     {
-        return this.id;
+
+        liberary.findAllBooksForMemberUser();
     }
-    public String getName()
-    {
-        return this.name;
-    }
+
 }

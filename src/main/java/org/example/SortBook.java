@@ -11,7 +11,6 @@ public class SortBook implements Comparator<Book> {
         {
             return idCompared;
         }
-
         //the only case that compare with title when id1,id2 equals zero (id1=id2)
         return o1.getTitle().compareTo(o2.getTitle());
 
