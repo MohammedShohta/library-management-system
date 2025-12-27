@@ -10,7 +10,7 @@ A small **Java** project for managing a library, demonstrating **Object-Oriented
 - Used Stream Api to Handling data.
 - Sorting logic is now handled by **Library**, keeping **Book** as a data-only class.
 - Legacy methods are marked as **@Deprecated**.
-- "available Book" Filter and sort available books using the Stream API.
+- Filter and sort available books using the Stream API.
 - Implemented multiple filtering using Stream API for flexible data queries.
 - Improved returnBook logic to ensure books are returned only if borrowed.
 
