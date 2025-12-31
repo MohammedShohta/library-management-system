@@ -3,9 +3,16 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class Liberary   {
+
+     private   NotificationService notificationService;
     //aggregation relationship
     private List<Book> list=new ArrayList<>();
      private Admin admin;
+
+     public Liberary(NotificationService notificationService)
+     {
+         this.notificationService=notificationService;
+     }
     //completed done
     public void addBook(Book books) {
         list.add(books);
@@ -72,7 +79,9 @@ public class Liberary   {
         }
 
         book.markBorrowed();
-        System.out.println("you can borrow book"+" "+book.getTitle());
+        notificationService.sendNotifcation("Book Borrowed successfully");
+
+//        System.out.println("you can borrow book"+" "+book.getTitle());
 
 
     }
@@ -101,12 +110,11 @@ public class Liberary   {
         }
 
             book.markAsReturned();
-        System.out.println("Book returned suc");
-
-
+          notificationService.sendNotifcation("Book return successfully");
 
 
     }
+
 
     @Deprecated
     public void removeBook(String title) {
@@ -149,7 +157,6 @@ public class Liberary   {
             System.out.println(e.getMessage());
         }
     }
-
     /**
      * @deprecated Use findAllBooksV2() instead.
      */
@@ -236,6 +243,9 @@ public class Liberary   {
                       .sorted(Comparator.comparing(Book::getTitle))
                       .forEach(book-> System.out.println(book.getTitle()));
     }
+
+
+
 
 
 }
