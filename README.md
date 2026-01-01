@@ -13,6 +13,10 @@ A small **Java** project for managing a library, demonstrating **Object-Oriented
 - Filter and sort available books using the Stream API.
 - Implemented multiple filtering using Stream API for flexible data queries.
 - Improved returnBook logic to ensure books are returned only if borrowed.
+- Applied multithreading concepts.
+- Added a NotificationService that executes tasks asynchronously using ExecutorService, 
+  submitting notifications to a thread pool without blocking the main thread
+  -Refactored Main method by moving application logic to a separate Implementation class, improving readability and code organization.
 
 ## 🚀 Future Plans
 
