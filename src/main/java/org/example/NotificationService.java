@@ -1,6 +1,7 @@
 package org.example;
 
 import java.security.spec.ECField;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -13,8 +14,7 @@ public class NotificationService {
        this.notification= Executors.newFixedThreadPool(2);
    }
 
-   public void sendNotifcation(String messageNotification)
-   {
+   public void sendNotifcation(String messageNotification)  {
            notification.submit(()->{
                System.out.println(Thread.currentThread().getName()+" "+messageNotification);
                try {

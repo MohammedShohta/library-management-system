@@ -1,9 +1,13 @@
 package org.example;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.ExecutionException;
+
 public class Impelemention {
-    public static void impelemention()
-    {
-      NotificationService notificationService = new NotificationService();
+    public static void impelemention() throws InvalidBook, ExecutionException, InterruptedException, InvocationTargetException, IllegalAccessException {
+        LibraryReflaction reflaction=new LibraryReflaction();
+
+        NotificationService notificationService = new NotificationService();
         Liberary liberary = new Liberary(notificationService);
         Member member=new Member();
         Admin admin=new Admin();
@@ -16,11 +20,14 @@ public class Impelemention {
         admin.addBook(liberary,new Book(101,"B","hamed"));
         member.canBorrowBook(liberary,"B");
         admin.addBook(liberary,new Book(111,"A","sameh"));
-        admin.viewBook(liberary);
-        member.viewBook(liberary);
-        member.canBorrowBook(liberary,"php");
-        member.returnBook(liberary,"php");
-
+//        admin.viewBook(liberary);
+//        member.viewBook(liberary);
+//        member.canBorrowBook(liberary,"php");
+//        member.returnBook(liberary,"php");
         notificationService.shutdown();
+
+
+
+        reflaction.getBorrowMethod(liberary,"php");
     }
 }

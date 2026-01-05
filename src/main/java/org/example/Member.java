@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.concurrent.ExecutionException;
 
 //borrow,return only
 public class Member extends User{
@@ -15,7 +16,7 @@ public class Member extends User{
         try{
              liberary.borrowBookV3(title);
         }
-        catch (InvalidBook e)
+        catch (InvalidBook | ExecutionException | InterruptedException e)
         {
             System.out.println(e.getMessage());
         }
@@ -30,13 +31,12 @@ public class Member extends User{
         {
             System.out.println(e.getMessage());
         }
-    }
 
+    }
     @Override
     public void viewBook(Liberary liberary)
     {
 
         liberary.findAllBooksForMemberUser();
     }
-
 }

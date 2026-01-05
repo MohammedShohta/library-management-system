@@ -1,6 +1,6 @@
 package org.example;
 import java.util.*;
-import java.util.stream.Stream;
+import java.util.concurrent.ExecutionException;
 
 public class Liberary   {
 
@@ -9,6 +9,7 @@ public class Liberary   {
     private List<Book> list=new ArrayList<>();
      private Admin admin;
 
+     public Liberary(){}
      public Liberary(NotificationService notificationService)
      {
          this.notificationService=notificationService;
@@ -18,7 +19,6 @@ public class Liberary   {
         list.add(books);
         System.out.println("your book is added");
     }
-
     /**
      *
      * use function with lambda expression
@@ -39,7 +39,7 @@ public class Liberary   {
         }
         throw new InvalidBook("Book Not Available ");
     }
-    @Deprecated
+
     /*
     * use stream method
     *
@@ -55,7 +55,7 @@ public class Liberary   {
            {
                case BORROWED -> throw new InvalidBook("this book is borrowed ");
                case AVAILABLE -> {
-                   System.out.println("you can borrow this book");
+                   System.out.println("you can borrow this book reflaction");
                    book.markBorrowed();
                    return;
 
@@ -66,8 +66,8 @@ public class Liberary   {
        }
        throw new InvalidBook("this book is not available");
     }
-    public void borrowBookV3(String title)throws InvalidBook
-    {
+
+    public Object borrowBookV3(String title) throws InvalidBook, ExecutionException, InterruptedException {
         Book book =list.stream()
                 .filter(b->b.getTitle().equals(title))
                 .findFirst()
@@ -81,9 +81,11 @@ public class Liberary   {
         book.markBorrowed();
         notificationService.sendNotifcation("Book Borrowed successfully");
 
+
 //        System.out.println("you can borrow book"+" "+book.getTitle());
 
 
+        return null;
     }
     public void returnedBook(String title) throws InvalidBook {
         for (Book b : list) {
@@ -110,7 +112,7 @@ public class Liberary   {
         }
 
             book.markAsReturned();
-          notificationService.sendNotifcation("Book return successfully");
+        notificationService.sendNotifcation("Book return successfully");
 
 
     }
@@ -226,7 +228,7 @@ public class Liberary   {
     {
         Collections.sort(list,new SortBook());
     }
-
+    
     public void availableBook()
     {
         System.out.println("available book");
