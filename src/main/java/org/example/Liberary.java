@@ -15,6 +15,7 @@ public class Liberary   {
          this.notificationService=notificationService;
      }
     //completed done
+    @CustomAnnotation("admin")
     public void addBook(Book books) {
         list.add(books);
         System.out.println("your book is added");
@@ -67,6 +68,7 @@ public class Liberary   {
        throw new InvalidBook("this book is not available");
     }
 
+    @CustomAnnotation("user")
     public Object borrowBookV3(String title) throws InvalidBook, ExecutionException, InterruptedException {
         Book book =list.stream()
                 .filter(b->b.getTitle().equals(title))
